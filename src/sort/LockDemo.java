@@ -46,7 +46,7 @@ class PrintAB2{
             System.out.println("A");
             flag = true;
             cond.signal();
-        }finally {
+        } finally {
             lock.unlock();
         }
     }
@@ -60,13 +60,13 @@ class PrintAB2{
             System.out.println("B");
             flag = false;
             cond.signal();
-        }finally {
+        } finally {
             lock.unlock();
         }
     }
 }
 
-class PrintAb{
+class PrintAb {
     public static void main(String[] args) {
         PrintAb printAb = new PrintAb();
         new Thread(() -> {
@@ -119,9 +119,9 @@ class PrintAb{
 public class LockDemo {
     public static void main(String[] args) throws InterruptedException {
         LockDemo lockDemo = new LockDemo();
-        new Thread(() -> lockDemo.printChar(0,'A')).start();
-        new Thread(() -> lockDemo.printChar(1,'B')).start();
-        new Thread(() -> lockDemo.printChar(2,'C')).start();
+        new Thread(() -> lockDemo.printChar(0, 'A')).start();
+        new Thread(() -> lockDemo.printChar(1, 'B')).start();
+        new Thread(() -> lockDemo.printChar(2, 'C')).start();
 
         Thread.sleep(2000);
     }
@@ -130,7 +130,7 @@ public class LockDemo {
     private int count = 0;
 
     private void printChar(int target, char c) {
-        for (int i = 0; i < 10;) {
+        for (int i = 0; i < 10; ) {
             try {
                 lock.lock();
                 if (count % 3 == target) {

@@ -7,7 +7,6 @@ class _171 {
 
         fun titleToNumber3(columnTitle: String): Int {
             var result = 0
-            val len = columnTitle.length
             for (i in columnTitle.indices) {
                 val num = (columnTitle[i] - 'A') + 1
                 result = result * 26 + num
