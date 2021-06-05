@@ -3,13 +3,14 @@ class _211 {
         @JvmStatic
         fun main(args: Array<String>) {
             val dir = WordDictionary()
-            dir.addWord("bad")
-            dir.addWord("dad")
-            dir.addWord("mad")
-            println(dir.search("pad"))
-            println(dir.search("bad"))
-            println(dir.search(".ad"))
-            println(dir.search("b.."))
+            dir.addWord("a")
+            dir.addWord("a")
+            println(dir.search("."))
+            println(dir.search("a"))
+            println(dir.search("aa"))
+            println(dir.search("a"))
+            println(dir.search(".a"))
+            println(dir.search("a."))
         }
     }
 
@@ -62,11 +63,13 @@ class _211 {
         }
 
         private fun searchWordFromNode(word: String, k: Int, root: TrieNode): TrieNode? {
+            if (k == word.length)
+                return root
             var node = root
             for (i in k until word.length) {
                 val c = word[i]
                 if (c == '.') {
-                    for (next in 0..255) {
+                    for (next in 0..127) {
                         if (node[next.toChar()] != null) {
                             val res = searchWordFromNode(word, i + 1, node[next.toChar()]!!)
                             if (res != null && res.isEnd) {
@@ -74,6 +77,7 @@ class _211 {
                             }
                         }
                     }
+                    return null
                 } else if (node[c] != null) {
                     node = node[c]!!
                 } else {
